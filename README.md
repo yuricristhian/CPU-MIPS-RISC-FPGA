@@ -15,6 +15,7 @@ Características Principais:
 ![Arquitetura MIPS](https://i.pinimg.com/originals/f3/04/fc/f304fc67868fed2a047d31746e8c910a.jpg)
 
 O Instruction Set compreende apenas as intruções marcadas. Os 6 primeiros bits de cada instrução, que definem seu tipo, serão definidas pelo número do grupo.
+
 ![Instruction Set](https://i.pinimg.com/originals/75/c4/3d/75c43df21147f791cb195041244c7a20.jpg)
 
 Lembre-se: arquiteturas MIPS não fazem operações aritméticas/lógicas diretamente em memória. Os dados precisam primeiramente ser carregados nos registros
