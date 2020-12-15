@@ -1,0 +1,66 @@
+module Multiplier (
+input start, clockMul,
+input [31:0]mult1, 
+input [31:0]mult2,
+output reg done,
+output reg [31:0]produto
+);
+						 
+reg [64:0]register;
+reg [32:0]soma;
+reg load;
+integer estado, count;
+
+initial begin
+	load = 0;
+	estado = 0;
+	done = 0;
+	produto <= 0;
+end
+
+
+always @(posedge clockMul) begin
+
+	if  ((start == 0) & (load == 0)) begin
+		estado = 0;
+	end else begin
+		if (estado == 0) begin
+			estado = 1;
+			load = 1;
+			count = 0;
+		end
+	end
+	
+	if (estado == 1) begin
+		register[64:32] = 0;								//carregou o registrador	
+		register[31:0] = mult2[31:0];					//colocou o mult2 no byte menos significativo
+		estado = 2;											//próximo estado
+	end
+	
+	if (estado == 2) begin
+		if(register[0] == 1) begin						//O ultimo bit é igual a 1?
+			soma = mult1[31:0] + register[63:32];  //se sim soma
+			register[64:32] = soma;
+			estado = 3;
+		end else begin										//se não pula soma
+			estado = 3;
+		end
+	end
+	
+	if (estado == 3) begin						
+		register = register >> 1;						//shift
+		count = count + 1;
+		if(count == 32) begin
+			produto <= register[31:0];
+			done <= 1;
+			load = 0;
+			estado  = 0;
+		end else begin
+			done <= 0;
+			estado = 2;
+		end		
+	end
+	
+end
+	
+endmodule
