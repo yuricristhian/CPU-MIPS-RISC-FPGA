@@ -1,5 +1,5 @@
 # CPU-MIPS-RISC-FPGA
-## Projeto em VERILOG de uma CPU de 32 bits com arquitetura RISC MIPS implmentada em uma FPGA
+## Projeto em VERILOG de uma CPU de 32 bits com arquitetura RISC MIPS implementada em uma FPGA
 
 Características Principais:
 - A Word da arquitetura é definida em 32 bits;
